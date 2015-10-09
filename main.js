@@ -20,7 +20,7 @@ console.log('HANGMAN')
 
 var Words = {
 
-	word1: 'one',
+	word1: 'onnne',
 	word2: 'two',
 	word3: 'three'
 
@@ -38,15 +38,34 @@ letters = theWord.split('')
 var Hangman = {
 	checkForLetter: function (letter) {
 
-		if ( letters.indexOf(letter) === -1 || this.guessedLetters.indexOf(letter) >= 0 ) {
+		if ( this.guessedLetters.indexOf(letter) >= 0 ) {
 
 			console.log('You already guessed that letter, yo!');
-			this.guessedLetters.push(letter);
+			//this.guessedLetters.push(letter);
 
 		} else {
 
-			this.guessedLetters.push(letter);
-			this.correctGuesses.push(letter);
+			if (letters.indexOf(letter) === -1) {
+
+				this.guessedLetters.push(letter);
+
+			} else {
+				if ( theWord.split(letter).length - 1 > 1 ) {
+
+					for ( var i = 0; i < theWord.split(letter).length - 1; i++ ) {
+						this.correctGuesses.push(letter);		
+					}
+					
+				} else {
+
+					this.correctGuesses.push(letter);		
+
+				}
+				
+				this.guessedLetters.push(letter);
+				this.checkForWinner();
+
+			}
 			
 		}
 
@@ -55,8 +74,27 @@ var Hangman = {
 		
 		
 	},
+
+	checkForWinner: function () {
+
+		if ( this.correctGuesses.length === theWord.length	) {
+			console.log('You Win!');
+		}
+		
+	},
 	guessedLetters: [],
 	correctGuesses:[]
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
