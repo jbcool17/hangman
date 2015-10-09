@@ -20,9 +20,9 @@ console.log('HANGMAN')
 
 var Words = {
 
-	word1: 'onnne',
-	word2: 'two',
-	word3: 'three'
+	1: 'onnne',
+	2: 'two',
+	3: 'three'
 
 }
 
@@ -31,7 +31,9 @@ var Words = {
 // 	console.log(Words[word])
 // }
 
-theWord = Words.word1
+
+rand = Math.floor((Math.random() * 3) + 1);
+theWord = Words[rand];
 letters = theWord.split('')
 
 
@@ -42,27 +44,34 @@ var Hangman = {
 
 			console.log('You already guessed that letter, yo!');
 			//this.guessedLetters.push(letter);
+			this.lives--;
+			this.checkForLoser();
 
 		} else {
 
 			if (letters.indexOf(letter) === -1) {
 
 				this.guessedLetters.push(letter);
+				this.lives--;
+				this.checkForLoser();
 
 			} else {
-				if ( theWord.split(letter).length - 1 > 1 ) {
+
+				if ( theWord.split(letter).length - 1 > 0 ) {
 
 					for ( var i = 0; i < theWord.split(letter).length - 1; i++ ) {
 						this.correctGuesses.push(letter);		
 					}
-					
+
+					this.guessedLetters.push(letter);
+
 				} else {
 
+					this.guessedLetters.push(letter);
 					this.correctGuesses.push(letter);		
 
 				}
-				
-				this.guessedLetters.push(letter);
+							
 				this.checkForWinner();
 
 			}
@@ -82,8 +91,16 @@ var Hangman = {
 		}
 		
 	},
+
+	checkForLoser: function () {
+		if ( this.lives === 0 ) {
+			console.log('You lose!');
+		}
+
+	},
 	guessedLetters: [],
-	correctGuesses:[]
+	correctGuesses:[],
+	lives: 8
 
 
 }
