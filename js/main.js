@@ -32,8 +32,8 @@ var Words = {
 // }
 
 
-rand = Math.floor((Math.random() * 3) + 1);
-theWord = Words[rand];
+rand = Math.floor((Math.random() * words.length) + 1);
+theWord = words[rand];
 letters = theWord.split('')
 
 
@@ -78,7 +78,7 @@ var Hangman = {
 			
 		}
 
-		console.log(this.guessedLetters, this.correctGuesses);
+		console.log('GUESSED LETTERS:',this.guessedLetters, 'CORRECT GUESSES:', this.correctGuesses);
 
 		
 		
@@ -108,7 +108,12 @@ var Hangman = {
 
 // $('body').text(Hangman.lives);
 
+$(document).ready(function () {
+	// $.getJSON("js/words.json", function (json) {
+	//     console.log(json);
+	// });
 
+});
 
 
 
