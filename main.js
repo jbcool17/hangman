@@ -106,6 +106,8 @@ var Hangman = {
 }
 
 
+// $('body').text(Hangman.lives);
+
 
 
 
