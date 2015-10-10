@@ -2,12 +2,12 @@ console.log('HANGMAN')
 
 // The Hangman Game:
 
-// The game selects a random word from a word list and makes that the secret word
-// The player guesses one letter at a time, trying to figure out what the word is
-// If the player guesses correctly, any instances of that letter are revealed in the secret word
-// If the player guesses incorrectly, they are penalized by taking away a guess
-// If a player reveals all of the letters of the secret word, they win
-// If a player makes 8 incorrect guesses before solving the secret word, they lose
+// *The game selects a random word from a word list and makes that the secret word
+// *The player guesses one letter at a time, trying to figure out what the word is
+// *If the player guesses correctly, any instances of that letter are revealed in the secret word
+// *If the player guesses incorrectly, they are penalized by taking away a guess
+// *If a player reveals all of the letters of the secret word, they win
+// *If a player makes 8 incorrect guesses before solving the secret word, they lose
 // To do:
 
 // Plan out your object model. What variables and functions will each object have? How will the different objects communicate with each other?
@@ -161,7 +161,6 @@ $(document).ready(function () {
 
 		if(e.which == 13) {
 			Hangman.updateDislay();
-
     	}	
 			
 
