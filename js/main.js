@@ -20,7 +20,7 @@ console.log('HANGMAN')
 
 
 //Getting word from 'words.js' list
-rand = Math.floor((Math.random() * words.length) + 1);
+rand = _.random(0, words.length);
 theWord = words[rand];
 letters = theWord.split('')
 
@@ -50,18 +50,12 @@ var Hangman = {
 				if ( theWord.split(letter).length - 1 > 0 ) {
 					
 					//insert letter
-					_.each(theWord.split(letter), function() { 
+					_.times(theWord.split(letter).length - 1, function() { 
 							Hangman.addsCorrectLetter(letter);
 						    Hangman.points++;
+						    console.log('multiple')
 						});
 
-					// for ( var i = 0; i < theWord.split(letter).length - 1; i++ ) {
-							
-					// 	this.addsCorrectLetter(letter);
-					// 	this.points++;
-
-					// }
-					
 					//add to guessed
 					this.guessedLetters.push(letter);
 
@@ -88,12 +82,11 @@ var Hangman = {
 
 	addsCorrectLetter: function (letter) {
 
-		for (var i = 0; i < theWord.length; i++ ) {
-
+		_.times(theWord.length, function(i) {
 			if ( theWord[i] === letter ) {
-				this.correctGuesses[i] = letter;
+				Hangman.correctGuesses[i] = letter;
 			}
-		}
+		});
 		
 	},
 
@@ -165,8 +158,6 @@ $(document).ready(function () {
 		if(e.which == 13) {
 			Hangman.updateDislay();
     	}	
-			
-
 		
 	});
 
