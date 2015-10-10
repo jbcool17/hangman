@@ -18,24 +18,11 @@ console.log('HANGMAN')
 // Implement a "give up" button that will show the solution
 // Are there ways to refactor your code to make it DRYer?
 
-var Words = {
 
-	1: 'onnne',
-	2: 'two',
-	3: 'three'
-
-}
-
-
-// for (word in Words) {
-// 	console.log(Words[word])
-// }
-
-
+//Getting word from 'words.js' list
 rand = Math.floor((Math.random() * words.length) + 1);
 theWord = words[rand];
 letters = theWord.split('')
-
 
 var Hangman = {
 	checkForLetter: function (letter) {
@@ -62,7 +49,7 @@ var Hangman = {
 				// if word has multiple letters
 				if ( theWord.split(letter).length - 1 > 0 ) {
 					
-					//pushes letter
+					//insert letter
 					for ( var i = 0; i < theWord.split(letter).length - 1; i++ ) {
 							
 						this.addsCorrectLetter(letter);
@@ -76,7 +63,9 @@ var Hangman = {
 				} else {
 					//add to guessed
 					this.guessedLetters.push(letter);
+					//insert
 					this.addsCorrectLetter(letter);
+					//add point
 					this.points++;		
 
 				}
@@ -89,9 +78,7 @@ var Hangman = {
 		}
 
 		console.log(theWord, 'GUESSED LETTERS:',this.guessedLetters, 'CORRECT GUESSES:', this.correctGuesses);
-
-		
-		
+	
 	},
 
 	addsCorrectLetter: function (letter) {
@@ -126,6 +113,7 @@ var Hangman = {
 		}
 
 	},
+
 	setWord: function (theWord) {
 
 		for ( var i = 0; i < theWord.length; i++ ) {
@@ -135,51 +123,44 @@ var Hangman = {
 		$('#word').text(this.correctGuesses.join(' '));
 
 	},
+
 	guessedLetters: [],
 	correctGuesses: [],
 	lives: 8,
-	points: 0
+	points: 0,
 
+	updateDislay: function () {
+		var currentLetter = $('#letter').val();
+		this.checkForLetter(currentLetter);
+
+		$('#guessed').text('Guessed Letters: ' + this.guessedLetters.join(', '));
+		$('#word').text(this.correctGuesses.join(' '));
+		$('#lives').text(this.lives);
+		$('#points').text('POINTS: ' + this.points);
+		$('#letter').val('');
+	}
 
 }
-
-
-// $('body').text(Hangman.lives);
 
 $(document).ready(function () {
 	// $.getJSON("js/words.json", function (json) {
 	//     console.log(json);
 	// });
+
 	$('#lives').text('LIVES LEFT: ' + Hangman.lives);
 	$('#points').text('POINTS: ' + Hangman.points);
 	Hangman.setWord(theWord);
 	
-
-
+	//Click SUBMIT
 	$('#submit').on('click', function () {
-		var currentLetter = $('#letter').val();
-		Hangman.checkForLetter(currentLetter);
-
-		$('#guessed').text('Guessed Letters: ' + Hangman.guessedLetters.join(', '));
-		// $('#correct').text('Correct Guesses: ' + Hangman.correctGuesses.join(', '));
-		$('#word').text(Hangman.correctGuesses.join(' '));
-		$('#lives').text(Hangman.lives);
-		$('#points').text('POINTS: ' + Hangman.points);
-		$('#letter').val('');
-		
+		Hangman.updateDislay();
 	});
+
+	//ENTER
 	$(this).keypress(function (e) {
 
 		if(e.which == 13) {
-			var currentLetter = $('#letter').val();
-			Hangman.checkForLetter(currentLetter);
-
-			$('#guessed').text('Guessed Letters: ' + Hangman.guessedLetters.join(', '));
-			// $('#correct').text('Correct Guesses: ' + Hangman.correctGuesses.join(' '));
-			$('#word').text(Hangman.correctGuesses.join(' '));
-			$('#lives').text('LIVES LEFT: ' + Hangman.lives);
-			$('#points').text('POINTS: ' + Hangman.points);
-			$('#letter').val('');
+			Hangman.updateDislay();
 
     	}	
 			
