@@ -50,12 +50,17 @@ var Hangman = {
 				if ( theWord.split(letter).length - 1 > 0 ) {
 					
 					//insert letter
-					for ( var i = 0; i < theWord.split(letter).length - 1; i++ ) {
-							
-						this.addsCorrectLetter(letter);
-						this.points++;
+					_.each(theWord.split(letter), function() { 
+							Hangman.addsCorrectLetter(letter);
+						    Hangman.points++;
+						});
 
-					}
+					// for ( var i = 0; i < theWord.split(letter).length - 1; i++ ) {
+							
+					// 	this.addsCorrectLetter(letter);
+					// 	this.points++;
+
+					// }
 					
 					//add to guessed
 					this.guessedLetters.push(letter);
@@ -116,9 +121,7 @@ var Hangman = {
 
 	setWord: function (theWord) {
 
-		for ( var i = 0; i < theWord.length; i++ ) {
-			this.correctGuesses.push('_');
-		}
+		_.each(theWord, function(){ Hangman.correctGuesses.push('_')} );
 
 		$('#word').text(this.correctGuesses.join(' '));
 
