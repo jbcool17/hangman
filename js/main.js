@@ -40,15 +40,17 @@ letters = theWord.split('')
 var Hangman = {
 	checkForLetter: function (letter) {
 
+		// Check if input is invalid
 		if ( this.guessedLetters.indexOf(letter) >= 0 || letter.length > 1 ) {
 
-			console.log('You already guessed that letter or it is longer, yo!');
+			console.log('You already guessed that letter or it is invalid, yo!');
 			//this.guessedLetters.push(letter);
 			this.lives--;
 			this.checkForLoser();
 
 		} else {
 
+			// is letter is not correct
 			if (letters.indexOf(letter) === -1) {
 
 				this.guessedLetters.push(letter);
@@ -57,36 +59,55 @@ var Hangman = {
 
 			} else {
 
+				// if word has multiple letters
 				if ( theWord.split(letter).length - 1 > 0 ) {
-
+					
+					//pushes letter
 					for ( var i = 0; i < theWord.split(letter).length - 1; i++ ) {
-						this.correctGuesses.push(letter);		
-					}
+							
+						this.addsCorrectLetter(letter);
+						this.points++;
 
+					}
+					
+					//add to guessed
 					this.guessedLetters.push(letter);
 
 				} else {
-
+					//add to guessed
 					this.guessedLetters.push(letter);
-					this.correctGuesses.push(letter);		
+					this.addsCorrectLetter(letter);
+					this.points++;		
 
 				}
-							
+
+				//checks for winner
 				this.checkForWinner();
 
 			}
 			
 		}
 
-		console.log('GUESSED LETTERS:',this.guessedLetters, 'CORRECT GUESSES:', this.correctGuesses);
+		console.log(theWord, 'GUESSED LETTERS:',this.guessedLetters, 'CORRECT GUESSES:', this.correctGuesses);
 
 		
 		
 	},
 
+	addsCorrectLetter: function (letter) {
+
+		for (var i = 0; i < theWord.length; i++ ) {
+
+			if ( theWord[i] === letter ) {
+				this.correctGuesses[i] = letter;
+			}
+		}
+		
+	},
+
 	checkForWinner: function () {
 
-		if ( this.correctGuesses.length === theWord.length	) {
+		if ( this.points === theWord.length	) {
 			console.log('You Win!');
 			$('#message').text('YOU WIN!', theWord, 'is the answer!');
 			$('#letter').hide();
@@ -105,9 +126,19 @@ var Hangman = {
 		}
 
 	},
+	setWord: function (theWord) {
+
+		for ( var i = 0; i < theWord.length; i++ ) {
+			this.correctGuesses.push('_');
+		}
+
+		$('#word').text(this.correctGuesses.join(' '));
+
+	},
 	guessedLetters: [],
-	correctGuesses:[],
-	lives: 8
+	correctGuesses: [],
+	lives: 8,
+	points: 0
 
 
 }
@@ -119,15 +150,21 @@ $(document).ready(function () {
 	// $.getJSON("js/words.json", function (json) {
 	//     console.log(json);
 	// });
-
+	$('#lives').text('LIVES LEFT: ' + Hangman.lives);
+	$('#points').text('POINTS: ' + Hangman.points);
+	Hangman.setWord(theWord);
 	
+
+
 	$('#submit').on('click', function () {
 		var currentLetter = $('#letter').val();
 		Hangman.checkForLetter(currentLetter);
 
 		$('#guessed').text('Guessed Letters: ' + Hangman.guessedLetters.join(', '));
-		$('#correct').text('Correct Guesses: ' + Hangman.correctGuesses.join(', '));
+		// $('#correct').text('Correct Guesses: ' + Hangman.correctGuesses.join(', '));
+		$('#word').text(Hangman.correctGuesses.join(' '));
 		$('#lives').text(Hangman.lives);
+		$('#points').text('POINTS: ' + Hangman.points);
 		$('#letter').val('');
 		
 	});
@@ -138,8 +175,10 @@ $(document).ready(function () {
 			Hangman.checkForLetter(currentLetter);
 
 			$('#guessed').text('Guessed Letters: ' + Hangman.guessedLetters.join(', '));
-			$('#correct').text('Correct Guesses: ' + Hangman.correctGuesses.join(', '));
+			// $('#correct').text('Correct Guesses: ' + Hangman.correctGuesses.join(' '));
+			$('#word').text(Hangman.correctGuesses.join(' '));
 			$('#lives').text('LIVES LEFT: ' + Hangman.lives);
+			$('#points').text('POINTS: ' + Hangman.points);
 			$('#letter').val('');
 
     	}	
