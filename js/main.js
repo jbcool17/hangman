@@ -130,7 +130,7 @@ var Hangman = {
 		this.checkForLetter(currentLetter);
 
 		$('#guessed').text('Guessed Letters: ' + this.guessedLetters.join(', '));
-		$('#word').text(this.correctGuesses.join(' '));
+		$('#word').text('THE WORD: ', this.correctGuesses.join(' '));
 		$('#lives').text(this.lives);
 		$('#points').text('POINTS: ' + this.points);
 		$('#letter').val('');
