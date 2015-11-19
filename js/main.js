@@ -139,9 +139,7 @@ var Hangman = {
 }
 
 $(document).ready(function () {
-	// $.getJSON("js/words.json", function (json) {
-	//     console.log(json);
-	// });
+	
 
 	$('#lives').text('LIVES LEFT: ' + Hangman.lives);
 	$('#points').text('POINTS: ' + Hangman.points);
