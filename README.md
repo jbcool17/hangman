@@ -1,6 +1,6 @@
 # HANGMAN
 - Simple Hangman Game
-- homework for class
+
 
 ## Specs
 
@@ -9,4 +9,6 @@
 
 
 ## TODO
-- the actual hangman
+- C#
+- Python
+- Ruby
