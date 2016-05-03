@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calc.cs" />
     <Compile Include="HangMan.cs" />
     <Compile Include="Interfaces\ICalculator.cs" />
     <Compile Include="Program.cs" />
