@@ -15,6 +15,10 @@
 - needs words list
 - create tests
 
+## Ruby
+- rough draft
+- tests and refactoring
+
 ## TODO
 - Python
-- Ruby
+
