@@ -1,6 +1,3 @@
-
-
-
 module Game
 	class Hangman
 		
@@ -55,7 +52,9 @@ module Game
 
 			end
 
-			puts "WORD: | GUESS LETTERS: | CORRECT GUESSES: "
+			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters}| CORRECT GUESSES: #{@correct_guesses}"
+			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
+			puts "----------------------------------------------------------------------------------"
 		end
 
 		def adds_correct_letter(letter)
@@ -78,10 +77,6 @@ module Game
 		def check_for_loser
 			if @lives == 0 then puts "You Lose!" end
 		end
-
-		# def set_word
-
-		# end
 
 		def output_status(message)
 			puts "STATUS: #{message}"
