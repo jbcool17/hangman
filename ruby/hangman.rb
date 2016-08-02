@@ -9,15 +9,16 @@ module Game
 			@correct_guesses = Array.new(@letters.count)
 			@lives = 8
 			@points = 0
-
 		end
 
 		def check_for_letter(letter)
+			# Already Guessed
 			if ( @guessed_letters.index(letter) != nil )
 				puts "You already guessed that letter or it is invalid!"
 				@lives -= 1
 				check_for_loser
 			else
+				# Letters not in word
 				if (@letters.index(letter).nil?)
 					# add to guessed letter array
 					@guessed_letters << letter
@@ -26,6 +27,8 @@ module Game
 					# check_for_loser
 					check_for_loser
 				else
+					# check out this - d?
+					# could also use chars
 					length = @word.split(//).select { |l| l == 'd' }.count
 					if (length > 1)
 						# Loop
