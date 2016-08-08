@@ -1,3 +1,5 @@
+require_relative 'word_list
+'
 module Game
 	class Hangman
 		
