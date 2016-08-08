@@ -2,8 +2,7 @@ module Game
 	class Hangman
 		
 		def initialize
-			word_list = ['one', 'two', 'three', 'four']
-			@word = 'one' # get random word
+			@word = Game::WordList.new.word
 			@letters = @word.split(//)
 			@guessed_letters = []
 			@correct_guesses = Array.new(@letters.count)
