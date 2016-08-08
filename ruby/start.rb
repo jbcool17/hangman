@@ -1,5 +1,9 @@
 require_relative 'hangman'
 
+puts "-------------------"
+puts "Welcome To Hangman!"
+puts "-------------------"
+
 game = Game::Hangman.new
 status = true
 while status do
@@ -12,5 +16,10 @@ while status do
 	end	
 end
 
+if (game.check_for_winner)
+	puts "You Won!"
+else
+	puts "You Lose!"
+end
 
 puts 'The Game Has Ended.'

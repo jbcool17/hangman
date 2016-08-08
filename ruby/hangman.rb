@@ -31,7 +31,7 @@ module Game
 				else
 					# check out this - d?
 					# could also use chars
-					length = @word.split(//).select { |l| l == 'd' }.count
+					length = @word.split(//).select { |l| l == letter }.count
 					if (length > 1)
 						# Loop
 						length.times do 
@@ -57,7 +57,7 @@ module Game
 
 			end
 
-			if (@lives > 0)
+			if (@lives >= 0)
 				output_status
 			end
 		end
@@ -71,19 +71,17 @@ module Game
 		end
 
 		def check_for_winner
-			if @points == @word.length then	puts 'You Win!' end
-
+			# if @points == @word.length then	puts 'You Win!' end
 			return @points == @word.length
 		end
 
 		def check_for_loser
-			if @lives == 0 then puts "You Lose!" end
-
+			# if @lives <= 0 then puts "You Lose!" end
 			return @lives <= 0
 		end
 
 		def output_status
-			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters}| CORRECT GUESSES: #{@correct_guesses}"
+			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters.join(",")}| CORRECT GUESSES: #{@correct_guesses}"
 			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
 			puts "----------------------------------------------------------------------------------"
 		end
