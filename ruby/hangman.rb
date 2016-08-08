@@ -13,13 +13,15 @@ module Game
 
 		def check_for_letter(letter)
 			# Already Guessed
-			if ( @guessed_letters.index(letter) != nil )
+			if( @lives <= 0 )
+				puts 'You already lost mate. Stop trying.'
+			elsif ( @guessed_letters.index(letter) != nil )
 				puts "You already guessed that letter or it is invalid!"
 				@lives -= 1
 				check_for_loser
 			else
 				# Letters not in word
-				if (@letters.index(letter).nil?)
+				if ( @letters.index(letter).nil? )
 					# add to guessed letter array
 					@guessed_letters << letter
 					# subract a life
@@ -55,9 +57,9 @@ module Game
 
 			end
 
-			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters}| CORRECT GUESSES: #{@correct_guesses}"
-			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
-			puts "----------------------------------------------------------------------------------"
+			if (@lives > 0)
+				output_status
+			end
 		end
 
 		def adds_correct_letter(letter)
@@ -66,23 +68,20 @@ module Game
 					@correct_guesses[i] = letter
 				end
 			end
-
-			puts "STATUS: #{@correct_guesses.join('')}"
 		end
 
 		def check_for_winner
-			if ( @points == @word.length )
-				puts 'You Win!'
-				puts "WORD: #{@word}"
-			end
+			if @points == @word.length then	puts 'You Win!' end
 		end
 
 		def check_for_loser
 			if @lives == 0 then puts "You Lose!" end
 		end
 
-		def output_status(message)
-			puts "STATUS: #{message}"
+		def output_status
+			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters}| CORRECT GUESSES: #{@correct_guesses}"
+			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
+			puts "----------------------------------------------------------------------------------"
 		end
 
 
