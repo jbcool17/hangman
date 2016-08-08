@@ -16,23 +16,19 @@ puts "--------------------"
 puts "-------DONE!--------"
 puts "--------------------"
 puts "Starting Game Two"
+puts "Enter..."
 
 game_two = Game::Hangman.new
+status = true
+while status do
+	print 'Make a guess: '
+	input = gets.chomp[0]
+	game_two.check_for_letter input
+	
+	if (game_two.check_for_winner || game_two.check_for_loser)
+		status = false
+	end	
+end
 
-puts "Auto Running Game..."
-puts "--------------------"
-game_two.check_for_letter 'a'
-game_two.check_for_letter 'b'
-game_two.check_for_letter 'n'
-game_two.check_for_letter 'n'
-game_two.check_for_letter 't'
-game_two.check_for_letter 'f'
-# game_two.check_for_letter 'e'
-game_two.check_for_letter 'z'
-game_two.check_for_letter 'h'
-game_two.check_for_letter 'b'
-game_two.check_for_letter 'k'
 
-puts "--------------------"
-puts "-------DONE!--------"
-puts "--------------------"
+puts 'ending'
