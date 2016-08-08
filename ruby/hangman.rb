@@ -72,10 +72,14 @@ module Game
 
 		def check_for_winner
 			if @points == @word.length then	puts 'You Win!' end
+
+			return @points == @word.length
 		end
 
 		def check_for_loser
 			if @lives == 0 then puts "You Lose!" end
+
+			return @lives <= 0
 		end
 
 		def output_status
@@ -83,7 +87,5 @@ module Game
 			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
 			puts "----------------------------------------------------------------------------------"
 		end
-
-
 	end
 end
