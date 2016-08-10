@@ -16,8 +16,8 @@
 - create tests
 
 ## Ruby
-- rough draft
-- tests and refactoring
+- in a usable stat
+- run ```ruby start.rb```
 
 ## TODO
 - Python
