@@ -16,7 +16,8 @@
 - create tests
 
 ## Ruby
-- in a usable stat
+- in a usable state
+- run ```bundle```
 - run ```ruby start.rb```
 
 ## TODO
