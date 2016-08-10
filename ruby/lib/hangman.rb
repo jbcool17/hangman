@@ -7,7 +7,7 @@ module Game
 			@word = Game::WordList.new.word
 			@letters = @word.split(//)
 			@guessed_letters = []
-			@correct_guesses = Array.new(@letters.count)
+			@correct_guesses = Array.new(@letters.count).map{|i| '_'}
 			@lives = 8
 			@points = 0
 			@man = Game::TheMan.new
@@ -84,7 +84,7 @@ module Game
 
 		def output_status
 			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters.join(",")}"
-			puts "STATUS:=> CORRECT GUESSES: #{@correct_guesses}"
+			puts "STATUS:=> CORRECT GUESSES: #{@correct_guesses.join}"
 			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
 			puts "The Word: #{@word}"
 			nums = [7,6,5,4,3,2,1,0]
