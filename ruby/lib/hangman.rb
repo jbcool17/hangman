@@ -87,11 +87,14 @@ module Game
 			puts "STATUS:=> CORRECT GUESSES: #{@correct_guesses}"
 			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
 			puts "The Word: #{@word}"
+			nums = [7,6,5,4,3,2,1,0]
 			puts "----------------------------------------------------------------------------------"
-				@lives.times do |i|
+				nums[@lives].times do |i|
 					puts @man.man[i]
 				end
 			puts "----------------------------------------------------------------------------------"
 		end
 	end
 end
+0123456
+7654321
