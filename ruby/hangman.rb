@@ -1,4 +1,5 @@
 require_relative 'word_list'
+require_relative 'the_man'
 module Game
 	class Hangman
 		
@@ -9,6 +10,7 @@ module Game
 			@correct_guesses = Array.new(@letters.count)
 			@lives = 8
 			@points = 0
+			@man = Game::TheMan.new
 		end
 
 		def check_for_letter(letter)
@@ -83,6 +85,10 @@ module Game
 		def output_status
 			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters.join(",")}| CORRECT GUESSES: #{@correct_guesses}"
 			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
+			puts "----------------------------------------------------------------------------------"
+				@lives.times do |i|
+					puts @man.man[i]
+				end
 			puts "----------------------------------------------------------------------------------"
 		end
 	end
