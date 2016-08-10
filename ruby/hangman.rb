@@ -77,6 +77,7 @@ module Game
 
 		def check_for_loser
 			# if @lives <= 0 then puts "You Lose!" end
+			puts "#The Word: {@word}"
 			return @lives <= 0
 		end
 
