@@ -1,4 +1,4 @@
-require_relative 'hangman'
+require_relative './lib/hangman'
 
 puts "-------------------"
 puts "Welcome To Hangman!"
