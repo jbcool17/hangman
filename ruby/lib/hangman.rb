@@ -83,6 +83,7 @@ module Game
 		end
 
 		def output_status
+			system "clear"	
 			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters.join(",")}"
 			puts "STATUS:=> CORRECT GUESSES: #{@correct_guesses.join}"
 			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"

@@ -13,7 +13,8 @@ while status do
 	
 	if (game.check_for_winner || game.check_for_loser)
 		status = false
-	end	
+	end
+	
 end
 
 if (game.check_for_winner)
