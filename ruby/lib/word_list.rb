@@ -19,7 +19,7 @@ module Game
 		end
 
 		def generate_word_list
-			file = File.read('dictionary.json')
+			file = File.read('./dictionary.json')
 
 			data_hash = JSON.parse(file)
 
