@@ -8,58 +8,33 @@ module Game
 			@letters = @word.split(//)
 			@guessed_letters = []
 			@correct_guesses = Array.new(@letters.count).map{|i| '_'}
-			@lives = 8
+			@lives = 7
 			@points = 0
-			@man = Game::TheMan.new
+			@man = Game::TheMan.new.man
 		end
 
 		def check_for_letter(letter)
-			# Already Guessed
-			if( @lives <= 0 )
-				puts 'You already lost mate. Stop trying.'
-			elsif ( @guessed_letters.index(letter) != nil )
+			# Checking Guessed letters
+			if ( !@guessed_letters.index(letter).nil? )
 				puts "You already guessed that letter or it is invalid!"
+
+				# Subtracts a life & checks
 				@lives -= 1
 				check_for_loser
 			else
-				# Letters not in word
+				# Checking if letter is in word
 				if ( @letters.index(letter).nil? )
-					# add to guessed letter array
 					@guessed_letters << letter
-					# subract a life
 					@lives -= 1
-					# check_for_loser
 					check_for_loser
 				else
-					# check out this - d?
-					# could also use chars
-					length = @word.split(//).select { |l| l == letter }.count
-					if (length > 1)
-						# Loop
-						length.times do 
-							adds_correct_letter(letter)
-							@points += 1
-						end
-							
-						# add letter to guessed_letters
-						@guessed_letters << letter
-
-					else
-						# add to guessLetters
-						@guessed_letters << letter
-						# addsCorrectLetter
-						adds_correct_letter (letter)
-						# add point
-						@points += 1
-					end
-
-					# check_for_winner
+					adds_correct_letter(letter)
+					@guessed_letters << letter
 					check_for_winner
 				end
-
 			end
 
-			if (@lives >= 0)
+			if ( @lives >= 0 )
 				output_status
 			end
 		end
@@ -68,34 +43,32 @@ module Game
 			@word.length.times do |i|
 				if (@word[i] == letter)
 					@correct_guesses[i] = letter
+					@points += 1
 				end
 			end
 		end
 
 		def check_for_winner
-			# if @points == @word.length then	puts 'You Win!' end
-			return @points == @word.length
+			@points == @word.length
 		end
 
 		def check_for_loser
-			# if @lives <= 0 then puts "You Lose!" end
-			return @lives <= 0
+			@lives <= 0
 		end
 
 		def output_status
-			system "clear"	
+			system "clear"
+			puts "----------------------------------------------------------------------------------"	
 			puts "STATUS:=> GUESS LETTERS: #{@guessed_letters.join(",")}"
-			puts "STATUS:=> CORRECT GUESSES: #{@correct_guesses.join}"
+			puts "STATUS:=> CORRECT GUESSES: #{@correct_guesses.join " "}"
 			puts "STATUS:=> Points: #{@points} | Lives Left: #{@lives}"
-			puts "The Word: #{@word}"
+			puts "The Word: #{@word}" # Remove this soon
 			nums = [7,6,5,4,3,2,1,0]
-			puts "----------------------------------------------------------------------------------"
+			puts "----------------------------HANGMAN-----------------------------------------------"
 				nums[@lives].times do |i|
-					puts @man.man[i]
+					puts @man[i]
 				end
 			puts "----------------------------------------------------------------------------------"
 		end
 	end
 end
-0123456
-7654321
