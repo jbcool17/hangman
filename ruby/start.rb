@@ -1,5 +1,6 @@
 require_relative './lib/hangman'
 
+system "clear"
 puts "-------------------"
 puts "Welcome To Hangman!"
 puts "-------------------"
