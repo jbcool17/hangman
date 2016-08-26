@@ -2,6 +2,7 @@ require_relative 'word_list'
 require_relative 'the_man'
 module Game
 	class Hangman
+		attr_accessor :word, :points, :lives, :correct_guesses, :man
 		
 		def initialize
 			@word = Game::WordList.new.word
